@@ -1,3 +1,5 @@
+package org;
+
 
 import java.util.Date;
 
@@ -8,7 +10,7 @@ import org.hibernate.cfg.Configuration;
 public class Solution {
 
 	public static void main(String[] args) {
-		Contact contact = new Contact();
+		Contacts contact = new Contacts();
 		contact.setId(13);
 		contact.setFirstName("Guido Van");
 		contact.setLastName("Rossum");
