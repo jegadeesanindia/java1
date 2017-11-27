@@ -1,0 +1,63 @@
+create table user(
+First_name varchar(15),
+Last_name varchar(15),
+password varchar(15),
+phone_no varchar(15),
+email_id varchar(15),
+primary key (email_id)
+);
+
+create table resume (
+    ID_NUMBER bigint AUTO_INCREMENT,
+    address varchar(50),
+      city varchar(30),
+    state varchar(2),
+    zip_code varchar(5),
+    first_name varchar(30),
+      last_name varchar(30),
+    best_phone varchar(11),
+    email_address varchar(50),
+      objective_note varchar(150),
+    primary key (ID_NUMBER)
+);   
+
+create table degrees (
+    ID_NUMBER bigint AUTO_INCREMENT,
+    School varchar(50),
+    pecentage varchar(50),
+    degree_type varchar(5),
+    major varchar(30),
+    grad_month varchar(9),
+    grad_year varchar(4),
+    cgpa varchar(5),
+    fk_resume_id bigint not null,
+    FOREIGN KEY (fk_resume_id) references resume (ID_NUMBER),
+    primary key (ID_NUMBER)
+);
+
+create table reference (
+    ID_NUMBER bigint AUTO_INCREMENT,
+    first_name varchar(30),
+      last_name varchar(30),
+    best_phone varchar(11),
+    email_address varchar(50),
+    fk_resume_id bigint not null,
+    FOREIGN KEY (fk_resume_id) references resume (ID_NUMBER),
+    primary key (ID_NUMBER)
+);
+
+
+
+create table employment_history (
+    ID_NUMBER bigint AUTO_INCREMENT,
+    company varchar(50),
+      title varchar(30),
+    duties varchar(100),
+    start_month varchar(9),
+      start_year varchar(4),
+    end_month varchar(9),
+      end_year varchar(4),
+    fk_resume_id bigint not null,
+    FOREIGN KEY (fk_resume_id) references resume (ID_NUMBER),
+    primary key (ID_NUMBER)
+ );
