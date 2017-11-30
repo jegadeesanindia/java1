@@ -1,69 +1,56 @@
+package org.web.servlet;
 
+import java.io.IOException;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
+import javax.Servlet.Session.HttpSession;
 
-import java.util.Date;
+/**
+ * Servlet Filter implementation class Contact
+ */
+@WebFilter(urlpatterns= {"/new","/delete","/update","/view"})
+public class Contact implements Filter {
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+    /**
+     * Default constructor. 
+     */
+    public Contact() {
+        // TODO Auto-generated constructor stub
+    }
 
-@Entity
-public class Contact {
-	@Id
-	private Integer id;
-	private String firstName;
-	private String lastName;
-	private String emailId;
-	private Long phoneNo;
-	private Date dateOfBirth;
-
-	public Contact() {
-		super();
+	/**
+	 * @see Filter#destroy()
+	 */
+	public void destroy() {
+		// TODO Auto-generated method stub
 	}
 
-	public Integer getId() {
-		return id;
+	/**
+	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
+	 */
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+
+		HttpSession s=request.getSession();
+		if(s.getId()!=null)
+		{
+		chain.doFilter(request, response);
+		}
+		else
+		{
+			request.getRequestDispatcher("add.html").include(request, response);
+		}
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	/**
+	 * @see Filter#init(FilterConfig)
+	 */
+	public void init(FilterConfig fConfig) throws ServletException {
+		// TODO Auto-generated method stub
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getEmailId() {
-		return emailId;
-	}
-
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
-
-	public Long getPhoneNo() {
-		return phoneNo;
-	}
-
-	public void setPhoneNo(Long phoneNo) {
-		this.phoneNo = phoneNo;
-	}
-
-	public Date getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
 }
