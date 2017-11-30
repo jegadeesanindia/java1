@@ -42,7 +42,7 @@ public class Contact implements Filter {
 		}
 		else
 		{
-			request.getRequestDispatcher("add.html").include(request, response);
+			request.getRequestDispatcher("login.html").include(request, response);
 		}
 	}
 
